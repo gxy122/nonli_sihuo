@@ -1,0 +1,74 @@
+<view class="bigTop" style="padding-top:{{navHeight}}px; background-image:url({{picUrl}}topBg.jpg)">
+  <view class="header" style="height:{{navHeight}}px; background-image:url({{picUrl}}topBg.jpg)">
+    <view class="bigTitle" style="height:{{height}}px; padding-top:{{navTop}}px;">农历</view>
+  </view>
+  <view class="searchBox">
+    <view class="search">
+      <image src="../../images/searchIcon.png"></image>
+      <input confirm-type="search" placeholder="搜索您喜欢的部落和活动" placeholder-style="color:#707070;"></input>
+    </view>
+  </view>
+
+  <view class="banner">
+      <swiper autoplay="true" circular="true" interval="3000" bindanimationfinish="banner">
+            <block wx:for="{{banner}}" wx:key="*this">
+                <swiper-item>
+                    <view class="swiper-item {{item}}">
+                        <image mode="widthFix" src="../../images/banner.jpg"></image>
+                    </view>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="indicator">
+            <view wx:for="{{banner}}" class="indicatorLi {{bannerIndex==index ? 'on' : ''}}"></view>
+        </view>
+  </view>
+</view>
+
+<view class="indexNav">
+  <navigator class="li" wx:for="{{indexNav}}" url="{{item.url}}">
+    <image src="{{item.icon}}"></image>
+    <view class="h3">{{item.title}}</view>
+  </navigator>
+</view>
+
+<view class="tow">
+  <view class="li">
+    <view class="num">6</view>
+    <view class="text">
+      <view>已报名进行中</view>
+      <view>活动数量</view>
+    </view>
+  </view>
+  <view class="li">
+    <view class="num">20</view>
+    <view class="text">
+      <view>本学期累计参加</view>
+      <view>活动数量</view>
+    </view>
+  </view>
+</view>
+
+
+<view class="tuijianTitle">
+  <image src="../../images/title.png"></image>
+  推荐活动
+</view>
+<navigator wx:for="{{list}}" url="跳转路径" class="tuijianLi">
+  <view class="liTop">
+    <view class="jian" wx:if="{{item.is_tuijian=='1'}}">荐</view>
+    <view class="pic">
+      <image mode="widthFix" src="{{item.image}}"></image>
+      <view class="bq" style="background-image:url({{picUrl}}{{item.is_jinxing=='1' ? 'blue' : 'red'}}Bq.png)">{{item.is_jinxing=='1' ? '进行中' : '已结束'}} </view>
+    </view>
+    <view class="text">
+      <view class="h3">{{item.title}}</view>
+      <view class="p">报名时间：{{item.baomingDate}}</view>
+      <view class="p">活动时间：{{item.huodongDate}}</view>
+      <view class="p">地点：{{item.didian}}</view>
+    </view>
+  </view>
+  <view class="bot">
+    <view class="span" wx:for="{{item.biaoqianArray}}" wx:for-item="span">{{span}}</view>
+  </view>
+</navigator>
